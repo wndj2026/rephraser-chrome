@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rephraser</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <div class="brand">
+        <span class="mark" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 6h16M4 12h10M4 18h13"/>
+          </svg>
+        </span>
+        <div>
+          <h1>Rephraser</h1>
+          <p class="sub">DeepSeek chat polish</p>
+        </div>
+      </div>
+      <button id="settingsToggle" class="icon-btn" type="button" aria-expanded="false" aria-controls="settings" title="Settings">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M4 7h10M18.5 7H21M3 17h4M12.5 17H21"/>
+          <circle cx="16" cy="7" r="2.3"/>
+          <circle cx="10" cy="17" r="2.3"/>
+        </svg>
+      </button>
+    </header>
+
+    <section id="settings" class="settings" hidden>
+      <label for="apiKey">DeepSeek API key</label>
+      <div class="row">
+        <input id="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="sk-...">
+        <button id="keyVisibility" class="ghost" type="button">Show</button>
+      </div>
+      <div class="row end">
+        <span id="keyStatus" class="status" role="status"></span>
+        <button id="saveKey" class="primary small" type="button">Save key</button>
+      </div>
+      <p class="hint">Stored in this browser profile only. The draft is sent to DeepSeek when you rephrase.</p>
+    </section>
+
+    <section class="composer">
+      <div class="section-head">
+        <label for="draft">Draft</label>
+        <span class="kbd-hint">Enter to run</span>
+      </div>
+      <textarea id="draft" rows="4" placeholder="Paste or type the rough message..." spellcheck="false"></textarea>
+      <div class="row">
+        <div class="row tight">
+          <button id="paste" class="ghost" type="button">Paste</button>
+          <button id="clear" class="ghost" type="button">Clear</button>
+        </div>
+        <button id="run" class="primary" type="button">Rephrase</button>
+      </div>
+    </section>
+
+    <p id="error" class="error" role="alert" hidden></p>
+
+    <section id="results" class="results" hidden>
+      <div class="section-head">
+        <span>Variations</span>
+        <span id="copiedNote" class="status" role="status" aria-live="polite"></span>
+      </div>
+      <div id="cards" class="cards"></div>
+      <p class="hint">Click a variation to copy it.</p>
+    </section>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
